@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for ip-geolocation-wild-haze-5733 on 2024-10-21T21:18:44-06:00
+# fly.toml app configuration file generated for ip-geolocation on 2024-10-21T21:18:44-06:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'ip-geolocation-wild-haze-5733'
+app = 'ip-geolocation'
 primary_region = 'gdl'
 console_command = '/rails/bin/rails console'
 
