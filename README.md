@@ -37,46 +37,55 @@ bin/build_container
 bin/dev
 ```
 
-# 3. Runing the test
+# Runing the tests
 
 ```bash
 rspec spec/
 ```
 
-# 4. Endpoints
+<img width="618" alt="Captura de pantalla 2024-10-22 a la(s) 3 25 20 p m" src="https://github.com/user-attachments/assets/5557e20d-764f-48bd-9cf8-480294743071">
 
-The API in deployed in these example URL 
-https://app-geolocation-service.onrender.com/
+
+# 5. User Auth 
+
+The API is not available to the public, you must be logged in to use it, it is also displayed in these example URLs: https://app-geolocation-service.onrender.com/
 
 ### First create an user and login into the API
  - Create an User
 
-```http
-curl -X POST https://app-geolocation-service.onrender.com/users \
--H "Content-Type: application/json" \
--d '{
-  "user": {
-    "name": "test",
-    "email": "sss@example.com",
-    "password": "abcd1234"
-  }
-}'
+```bash
+    curl -X POST https://app-geolocation-service.onrender.com/users \
+    -H "Content-Type: application/json" \
+    -d   '{
+      "user": {
+        "name": "test",
+        "email": "sss@example.com",
+        "password": "abcd1234"
+      }
+    }'
 ```
- - Then login into the API with the created user 
+ - Then login into the API with the created user, you can use an already create user un the app:
+  - "email": "demo@example.com",
+  - "password": "abcd1234"
 
-```http
+```bash
 curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content-Type: application/json" -d '{
-  "email": "admin@example.com",
+  "email": "demo@example.com",
   "password": "abcd1234"
 }'
 ```
 
+# 5. Geolocation Endpoints
+
+#### Geolocation Object Example
+
+<img width="467" alt="Captura de pantalla 2024-10-22 a la(s) 3 33 36 p m" src="https://github.com/user-attachments/assets/2218aad8-7c7c-4081-b056-31b33837fb9a">
 
 #### POST Geolocation
 
   POST /api/v1/geolocations
 
-```http  
+```bash  
   curl -X POST "https://app-geolocation-service.onrender.com/api/v1/geolocations" \
   -H "Content-Type: application/json" \
   -H "Authorization: user_token_here" \
@@ -87,12 +96,14 @@ curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content
 | :-------- | :------- | :------------------------------------|
 | `input`   | `string` | **Required**. Can be an URL or an IP |
 
+- Response: 
+<img width="475" alt="Captura de pantalla 2024-10-22 a la(s) 3 37 01 p m" src="https://github.com/user-attachments/assets/a43cb235-7628-4167-a82b-fc52d0ad40bf">
 
 #### Get one Geolocation
 
   GET /api/v1/geolocations/${id}
 
-```http  
+```bash  
   curl -X GET https://app-geolocation-service.onrender.com/api/v1/geolocations/4 \api/v1/geolocations/11 \
   -H "Authorization: user_token_here"
 ```
@@ -103,11 +114,11 @@ curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content
 
 #### Get all Geolocations
 
-  GET /api/v1/geolocations/${id}
+  GET /api/v1/geolocations
 
-```http  
+```bash  
   curl -X GET https://app-geolocation-service.onrender.com/api/v1/geolocations \
-  -H "Authorization: user_token_here"
+  -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3Mjk2MzYyMDF9.VS1g5Y66BslPwbefciNsLaXeg6OXopLLkDg_MKs9yY0"
 ```
 
 | Parameter | Type     | Description                       |
@@ -118,11 +129,13 @@ curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content
 
   DELETE /api/v1/geolocations/${id}
 
-```http  
-  curl -X DELETE "https://app-geolocation-service.onrender.com/api/v1/geolocations/13" \
+```bash  
+  curl -X DELETE "https://app-geolocation-service.onrender.com/api/v1/geolocations/5" \
   -H "Content-Type: application/json" \
-  -H "Authorization: user_token_here"
+  -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3Mjk2MzYyMDF9.VS1g5Y66BslPwbefciNsLaXeg6OXopLLkDg_MKs9yY0"
 ```
+
+-Succes response: "Geolocation deleted successfully"
 
 | Parameter | Type     | Description                       |
 | :-------- | :------- | :-------------------------------- |
