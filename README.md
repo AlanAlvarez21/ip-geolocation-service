@@ -122,10 +122,6 @@ curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content
   -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3Mjk2MzYyMDF9.VS1g5Y66BslPwbefciNsLaXeg6OXopLLkDg_MKs9yY0"
 ```
 
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of the geolocation |
-
 #### Delete Geolocation
 
   DELETE /api/v1/geolocations/${id}
