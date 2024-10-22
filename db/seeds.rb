@@ -1,9 +1,129 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+
+geolocation_data = [
+  {
+    ip: "104.26.5.250",
+    input: "https://www.ipstack.com",
+    city: "Newark",
+    country: nil,
+    latitude: "40.73873138427734",
+    longitude: "-74.19452667236328",
+    provider: nil,
+    type_of_ip: nil,
+    ip_version: "ipv4",
+    continent_code: "NA",
+    continent_name: "North America",
+    country_code: "US",
+    country_name: "United States",
+    region_code: "NJ",
+    region_name: "New Jersey",
+    zip: "07103",
+    msa: "35620",
+    dma: "501",
+    ip_routing_type: "fixed",
+    connection_type: "tx",
+    geoname_id: 5101798,
+    capital: "Washington D.C.",
+    country_flag: "https://assets.ipstack.com/flags/us.svg",
+    country_flag_emoji: "🇺🇸",
+    calling_code: "1",
+    is_eu: false,
+    created_at: Time.now,
+    updated_at: Time.now
+  },
+  {
+    ip: "18.160.124.108",
+    input: "https://www.mercadolibre.com",
+    city: "Los Angeles",
+    country: nil,
+    latitude: "34.04563903808594",
+    longitude: "-118.2416381835937",
+    provider: nil,
+    type_of_ip: nil,
+    ip_version: "ipv4",
+    continent_code: "NA",
+    continent_name: "North America",
+    country_code: "US",
+    country_name: "United States",
+    region_code: "CA",
+    region_name: "California",
+    zip: "90013",
+    msa: "31100",
+    dma: "803",
+    ip_routing_type: "fixed",
+    connection_type: "tx",
+    geoname_id: 5368361,
+    capital: "Washington D.C.",
+    country_flag: "https://assets.ipstack.com/flags/us.svg",
+    country_flag_emoji: "🇺🇸",
+    calling_code: "1",
+    is_eu: false,
+    created_at: Time.now,
+    updated_at: Time.now
+  },
+  {
+    ip: "172.66.42.246",
+    input: "https://positrace.com/en/",
+    city: "San Francisco",
+    country: nil,
+    latitude: "37.76784896850586",
+    longitude: "-122.3928604125976",
+    provider: nil,
+    type_of_ip: nil,
+    ip_version: "ipv4",
+    continent_code: "NA",
+    continent_name: "North America",
+    country_code: "US",
+    country_name: "United States",
+    region_code: "CA",
+    region_name: "California",
+    zip: "94107",
+    msa: "41860",
+    dma: "807",
+    ip_routing_type: "fixed",
+    connection_type: "tx",
+    geoname_id: 5391959,
+    capital: "Washington D.C.",
+    country_flag: "https://assets.ipstack.com/flags/us.svg",
+    country_flag_emoji: "🇺🇸",
+    calling_code: "1",
+    is_eu: false,
+    created_at: Time.now,
+    updated_at: Time.now
+  },
+  {
+    ip: "8.8.8.8",
+    input: "8.8.8.8",
+    city: "Glenmont",
+    country: nil,
+    latitude: "40.5369987487793",
+    longitude: "-82.12859344482422",
+    provider: nil,
+    type_of_ip: nil,
+    ip_version: "ipv4",
+    continent_code: "NA",
+    continent_name: "North America",
+    country_code: "US",
+    country_name: "United States",
+    region_code: "OH",
+    region_name: "Ohio",
+    zip: "44628",
+    msa: nil,
+    dma: "510",
+    ip_routing_type: "fixed",
+    connection_type: "ocx",
+    geoname_id: nil,
+    capital: "Washington D.C.",
+    country_flag: "https://assets.ipstack.com/flags/us.svg",
+    country_flag_emoji: "🇺🇸",
+    calling_code: "1",
+    is_eu: false,
+    created_at: Time.now,
+    updated_at: Time.now
+  }  
+]
+
+geolocation_data.each do |data|
+  Geolocation.create!(data)
+end
+
+puts "Seed completed: Geolocations Created."
