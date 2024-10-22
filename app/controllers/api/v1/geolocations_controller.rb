@@ -1,7 +1,7 @@
 module Api
   module V1
     class GeolocationsController < ApplicationController
-      skip_before_action :verify_authenticity_token, only: [ :create, :destroy ]
+      before_action :authorize_user
       before_action :set_geolocation, only: [ :show, :destroy ]
 
       def index
@@ -57,7 +57,8 @@ module Api
         @geolocation = Geolocation.new(geolocation_data)
 
         if @geolocation.save
-          render json: @geolocation, status: :created
+          render json: { message: "Geolocation created successfully", json: @geolocation }, status: :created
+
         else
           render json: { errors: @geolocation.errors.full_messages }, status: :unprocessable_entity
         end
@@ -68,7 +69,7 @@ module Api
       end
 
       def show
-        render json: @geolocation.as_json
+        render json: { message: "Geolocation fetched successfully", data: @geolocation.as_json }, status: :ok
       rescue StandardError => e
         render json: { error: "Error fetching geolocation: #{e.message}" }, status: :internal_server_error
       end
@@ -78,7 +79,7 @@ module Api
 
         if @geolocation
           @geolocation.destroy
-          head :no_content
+          render json: { message: "Geolocation deleted successfully" }, status: :ok
         else
           render json: { error: "Geolocation not found" }, status: :not_found
         end
