@@ -9,7 +9,7 @@ RSpec.describe Api::V1::GeolocationsController, type: :controller do
 
   let(:invalid_attributes) do
     {
-      input: ''
+      input: nil
     }
   end
 
@@ -31,7 +31,8 @@ RSpec.describe Api::V1::GeolocationsController, type: :controller do
       "msa" => "41860",
       "dma" => "807",
       "ip_routing_type" => "fixed",
-      "connection_type" => "tx"
+      "connection_type" => "tx",
+      "url" => 'https://positrace.com/en'
     }
   end
 
@@ -91,16 +92,16 @@ RSpec.describe Api::V1::GeolocationsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    context "when the geolocation exists" do
-      it "destroys the geolocation" do
-        geolocation = Geolocation.create!(mock_response)
-        expect {
-          delete :destroy, params: { id: geolocation.id }
-        }.to change(Geolocation, :count).by(-1)
+  context "when the geolocation exists" do
+    it "destroys the geolocation" do
+      geolocation = Geolocation.create!(mock_response)
+      expect {
+        delete :destroy, params: { id: geolocation.id }
+      }.to change(Geolocation, :count).by(-1)
 
-        expect(response).to have_http_status(:no_content)
-      end
+      expect(response).to have_http_status(:no_content)
     end
+  end
 
     context "when the geolocation does not exist" do
       it "returns a not found response" do
