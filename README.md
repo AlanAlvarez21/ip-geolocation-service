@@ -23,6 +23,7 @@ In order to run locally you must install **Docker** and **Devcontainers**
       npx install -g @devcontainers/cli 
     ```   
 
+**Add .env file with the IP stack API Key, is an example in the file**
 
 # 2. Build the container:
 
