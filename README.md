@@ -2,7 +2,7 @@
 # Ruby exercise
 Alan Daniel Alvarez Castro 21/10/2024
 
-Example Deployed into Fly.io service:  https://ip-geolocation-wild-haze-5733.fly.dev/
+Example Deployed into Render.io service:  https://app-geolocation-service.onrender.com/
 
 
 
@@ -46,13 +46,13 @@ rspec spec/
 # 4. Endpoints
 
 The API in deployed in these example URL 
-https://ip-geolocation-wild-haze-5733.fly.dev/
+https://app-geolocation-service.onrender.com/
 
 ### First create an user and login into the API
  - Create an User
 
 ```http
-curl -X POST https://ip-geolocation-wild-haze-5733.fly.dev/users \
+curl -X POST https://app-geolocation-service.onrender.com/users \
 -H "Content-Type: application/json" \
 -d '{
   "user": {
@@ -65,7 +65,7 @@ curl -X POST https://ip-geolocation-wild-haze-5733.fly.dev/users \
  - Then login into the API with the created user 
 
 ```http
-curl -X POST https://ip-geolocation-wild-haze-5733.fly.dev/auth/login -H "Content-Type: application/json" -d '{
+curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content-Type: application/json" -d '{
   "email": "admin@example.com",
   "password": "abcd1234"
 }'
@@ -77,7 +77,7 @@ curl -X POST https://ip-geolocation-wild-haze-5733.fly.dev/auth/login -H "Conten
   POST /api/v1/geolocations
 
 ```http  
-  curl -X POST "https://ip-geolocation-wild-haze-5733.fly.dev/api/v1/geolocations" \
+  curl -X POST "https://app-geolocation-service.onrender.com/api/v1/geolocations" \
   -H "Content-Type: application/json" \
   -H "Authorization: user_token_here" \
   -d '{"geolocation": {"input": "https://chatgpt.com"}}'
@@ -93,7 +93,7 @@ curl -X POST https://ip-geolocation-wild-haze-5733.fly.dev/auth/login -H "Conten
   GET /api/v1/geolocations/${id}
 
 ```http  
-  curl -X GET https://ip-geolocation-wild-haze-5733.fly.dev/api/v1/geolocations/4 \api/v1/geolocations/11 \
+  curl -X GET https://app-geolocation-service.onrender.com/api/v1/geolocations/4 \api/v1/geolocations/11 \
   -H "Authorization: user_token_here"
 ```
 
@@ -106,7 +106,7 @@ curl -X POST https://ip-geolocation-wild-haze-5733.fly.dev/auth/login -H "Conten
   GET /api/v1/geolocations/${id}
 
 ```http  
-  curl -X GET https://ip-geolocation-wild-haze-5733.fly.dev/api/v1/geolocations \
+  curl -X GET https://app-geolocation-service.onrender.com/api/v1/geolocations \
   -H "Authorization: user_token_here"
 ```
 
@@ -119,7 +119,7 @@ curl -X POST https://ip-geolocation-wild-haze-5733.fly.dev/auth/login -H "Conten
   DELETE /api/v1/geolocations/${id}
 
 ```http  
-  curl -X DELETE "https://ip-geolocation-wild-haze-5733.fly.dev/api/v1/geolocations/13" \
+  curl -X DELETE "https://app-geolocation-service.onrender.com/api/v1/geolocations/13" \
   -H "Content-Type: application/json" \
   -H "Authorization: user_token_here"
 ```
