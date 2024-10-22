@@ -14,7 +14,7 @@ class GeolocationService
     data = response.parsed_response
 
     if response.success?
-      data.merge("url" => url) 
+      data.merge("url" => url)
     else
       error_message = data["error"] ? data["error"]["info"] : "Unknown error"
       raise StandardError, "Failed to retrieve geolocation data: #{error_message}"

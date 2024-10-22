@@ -2,7 +2,7 @@ module Api
   module V1
     class GeolocationsController < ApplicationController
       skip_before_action :verify_authenticity_token, only: :create
-      before_action :set_geolocation, only: [:show, :destroy]
+      before_action :set_geolocation, only: [ :show, :destroy ]
 
       def index
         @geolocations = Geolocation.all
@@ -11,23 +11,23 @@ module Api
 
       def create
         input = geolocation_params[:input]
-      
+
         # Manejar el caso donde no se proporciona input
         if input.blank?
           render json: { error: "Invalid IP or URL" }, status: :unprocessable_entity and return
         end
-      
+
         input_extractor = InputExtractorService.new(input)
         extracted_ip, url = input_extractor.call
-      
+
         # Verifica que se haya extraído al menos un valor válido
         if extracted_ip.blank? && url.blank?
           render json: { error: "Invalid IP or URL" }, status: :unprocessable_entity and return
         end
-      
+
         # Llamada al servicio para obtener datos de geolocalización
         data = GeolocationService.new(extracted_ip).call
-      
+
         geolocation_data = {
           input: extracted_ip || url,
           url: url.presence,
@@ -54,24 +54,24 @@ module Api
           calling_code: data.dig("location", "calling_code"),
           is_eu: data.dig("location", "is_eu")
         }
-      
+
         @geolocation = Geolocation.new(geolocation_data) # Crear un nuevo objeto Geolocation
-      
+
         if @geolocation.save # Guardar en lugar de actualizar
           render json: @geolocation, status: :created
         else
           render json: { errors: @geolocation.errors }, status: :unprocessable_entity
         end
       end
-      
-      
+
+
       def show
         render json: @geolocation.as_json
       end
 
       def destroy
-        @geolocation = Geolocation.find_by(id: params[:id]) 
-      
+        @geolocation = Geolocation.find_by(id: params[:id])
+
         if @geolocation
           @geolocation.destroy
           head :no_content
