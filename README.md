@@ -23,7 +23,7 @@ In order to run locally you must install **Docker** and **Devcontainers**
       npx install -g @devcontainers/cli 
     ```   
 
-**Add .env file with the IP stack API Key, is an example in the file**
+**Add .env file with the IP stack API Key, is an example in the repositorie**
 
 # 2. Build the container:
 
@@ -60,18 +60,16 @@ The API is not available to the public, you must be logged in to use it, it is a
     -d   '{
       "user": {
         "name": "test",
-        "email": "sss@example.com",
+        "email": "test@test.com",
         "password": "abcd1234"
       }
     }'
 ```
- - Then login into the API with the created user, you can use an already create user un the app:
-  - "email": "demo@example.com",
-  - "password": "abcd1234"
+ - Then login into the API with the created user:
 
 ```bash
 curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content-Type: application/json" -d '{
-  "email": "demo@example.com",
+  "email": "test@test.com",
   "password": "abcd1234"
 }'
 ```
@@ -119,7 +117,7 @@ curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content
 
 ```bash  
   curl -X GET https://app-geolocation-service.onrender.com/api/v1/geolocations \
-  -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3Mjk2MzYyMDF9.VS1g5Y66BslPwbefciNsLaXeg6OXopLLkDg_MKs9yY0"
+  -H "Authorization: user_token_here"
 ```
 
 #### Delete Geolocation
@@ -129,7 +127,7 @@ curl -X POST https://app-geolocation-service.onrender.com/auth/login -H "Content
 ```bash  
   curl -X DELETE "https://app-geolocation-service.onrender.com/api/v1/geolocations/5" \
   -H "Content-Type: application/json" \
-  -H "Authorization: eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJleHAiOjE3Mjk2MzYyMDF9.VS1g5Y66BslPwbefciNsLaXeg6OXopLLkDg_MKs9yY0"
+  -H "Authorization: user_token_here"
 ```
 
 -Succes response: "Geolocation deleted successfully"
