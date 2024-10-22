@@ -119,7 +119,7 @@ geolocation_data = [
     is_eu: false,
     created_at: Time.now,
     updated_at: Time.now
-  }  
+  }
 ]
 
 geolocation_data.each do |data|
