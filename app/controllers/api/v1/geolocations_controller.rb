@@ -54,14 +54,7 @@ module Api
       def show
         geolocation = Geolocation.find(params[:id])
 
-        render json: geolocation
-
-        # render json: geolocation.as_json(only: [
-        #   :ip, :type_of_ip, :continent_code, :continent_name, :country_code,
-        #   :country_name, :region_code, :region_name, :city, :zip, :latitude,
-        #   :longitude, :msa, :dma, :ip_routing_type, :connection_type, :geoname_id,
-        #   :capital, :country_flag, :country_flag_emoji, :calling_code, :is_eu
-        # ])
+        render json: geolocation.as_json
       end
 
       def destroy
@@ -81,5 +74,5 @@ module Api
         params.require(:geolocation).permit(:input)
       end
     end
-  end 
+  end
 end

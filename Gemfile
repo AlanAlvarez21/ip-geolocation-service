@@ -51,7 +51,7 @@ group :development, :test do
 
   gem "byebug"
 
-  gem 'rspec-rails', group: [:development, :test]
+  gem "rspec-rails", group: [ :development, :test ]
 end
 
 group :development do
