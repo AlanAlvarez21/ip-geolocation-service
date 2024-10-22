@@ -1,29 +1,24 @@
-require 'resolv'
+require "resolv"
 
 class GeolocationService
-    def initialize(input)
+  def initialize(input)
     @input = input
-    end
+  end
 
-    def call
-    ip = extract_ip(@input)
-    raise StandardError, "Invalid IP or URL" unless ip
+  def call
+    input = extract_ip(@input)
+    raise StandardError, "Invalid IP or URL" unless input
 
       response = HTTParty.get("http://api.ipstack.com/#{ip}?access_key=#{ENV['IPSTACK_API_KEY']}")
 
+    data = response.parsed_response
     if response.success?
-        {
-        ip: ip,
-        city: response['city'],
-        country: response['country_name'],
-        latitude: response['latitude'],
-        longitude: response['longitude'],
-        provider: 'ipstack'
-        }
+      data
     else
-      raise StandardError, "Failed to retrieve geolocation data"
+      error_message = data["error"] ? data["error"]["info"] : "Unknown error"
+      raise StandardError, "Failed to retrieve geolocation data: #{error_message}"
     end
-    end
+  end
 
     private
 
