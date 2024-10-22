@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::GeolocationsController, type: :controller do
+  let(:user) { create(:user) } 
+  let(:token) { JWT.encode({ user_id: user.id }, ENV['APP_SECRET_KEY'], 'HS256') } 
+
   let(:valid_attributes) do
     {
       input: 'https://positrace.com/en/'
@@ -38,6 +41,7 @@ RSpec.describe Api::V1::GeolocationsController, type: :controller do
 
   before do
     allow(GeolocationService).to receive(:new).and_return(instance_double(GeolocationService, call: mock_response))
+    request.headers['Authorization'] = "Bearer #{token}" # Añade el token a la cabecera
   end
 
   describe "GET #index" do
