@@ -103,6 +103,10 @@ GEM
     diff-lcs (1.5.1)
     dockerfile-rails (1.6.22)
       rails (>= 3.0.0)
+    dotenv (3.1.4)
+    dotenv-rails (3.1.4)
+      dotenv (= 3.1.4)
+      railties (>= 6.1)
     drb (2.2.1)
     erubi (1.13.0)
     globalid (1.2.1)
@@ -335,6 +339,7 @@ DEPENDENCIES
   capybara
   debug
   dockerfile-rails (>= 1.6)
+  dotenv-rails
   httparty
   importmap-rails
   jbuilder

@@ -51,7 +51,9 @@ group :development, :test do
 
   gem "byebug"
 
-  gem "rspec-rails", group: [ :development, :test ]
+  gem "rspec-rails"
+
+  gem 'dotenv-rails'
 end
 
 group :development do
