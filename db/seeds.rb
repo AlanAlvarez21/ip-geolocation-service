@@ -1,3 +1,4 @@
+Geolocation.destroy_all
 
 geolocation_data = [
   {
@@ -35,7 +36,6 @@ geolocation_data = [
     input: "https://www.mercadolibre.com",
     city: "Los Angeles",
     country: nil,
-    url: "https://www.mercadolibre.com"
     latitude: "34.04563903808594",
     longitude: "-118.2416381835937",
     provider: nil,
@@ -59,13 +59,14 @@ geolocation_data = [
     calling_code: "1",
     is_eu: false,
     created_at: Time.now,
-    updated_at: Time.now
+    updated_at: Time.now,
+    url: "https://www.mercadolibre.com"
   },
   {
     ip: "172.66.42.246",
     input: "https://positrace.com/en/",
     city: "San Francisco",
-    url: "https://positrace.com/en/"
+    url: "https://positrace.com/en/",
     country: nil,
     latitude: "37.76784896850586",
     longitude: "-122.3928604125976",
@@ -123,6 +124,7 @@ geolocation_data = [
     updated_at: Time.now
   }
 ]
+
 
 geolocation_data.each do |data|
   Geolocation.create!(data)
