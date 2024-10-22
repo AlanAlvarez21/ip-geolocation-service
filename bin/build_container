@@ -1,12 +1,6 @@
 #!/bin/bash
 
-# Build the container
 npx @devcontainers/cli build --workspace-folder .
-
-# Up the container
 npx @devcontainers/cli up --workspace-folder .
-
-# Set up the database
-bin/rails db:create
-bin/rails db:migrate
-bin/rails db:seed
+bin/bundle i 
+bin/rails db:create db:migrate db:seed
