@@ -5,7 +5,9 @@ RSpec.describe GeolocationService, type: :service do
   let(:valid_url) { "https://positrace.com/en/" }
   let(:invalid_ip) { "999.999.999.999" }
   let(:invalid_url) { "https://invalid-url" }
+  let(:empty_input) { "" }
   let(:api_key) { "846a08a0834371e69dd2bc546df74199" }
+
   let(:mock_success_response) do
     {
       "ip" => "172.66.42.246",
@@ -59,7 +61,7 @@ RSpec.describe GeolocationService, type: :service do
       it "raises an error for invalid IP" do
         service = GeolocationService.new(invalid_ip)
 
-        expect { service.call }.to raise_error(StandardError, "Invalid IP or URL")
+        expect { service.call }.to raise_error(InputExtractorService::InvalidInputError, "Invalid IP or URL provided")
       end
     end
 
@@ -67,7 +69,15 @@ RSpec.describe GeolocationService, type: :service do
       it "raises an error for invalid URL" do
         service = GeolocationService.new(invalid_url)
 
-        expect { service.call }.to raise_error(StandardError, "Invalid IP or URL")
+        expect { service.call }.to raise_error(InputExtractorService::InvalidInputError, "Invalid IP or URL provided")
+      end
+    end
+
+    context "with empty input" do
+      it "raises an error for empty input" do
+        service = GeolocationService.new(empty_input)
+
+        expect { service.call }.to raise_error(InputExtractorService::InvalidInputError, "Invalid IP or URL provided")
       end
     end
 
@@ -77,7 +87,7 @@ RSpec.describe GeolocationService, type: :service do
 
         service = GeolocationService.new(valid_ip)
 
-        expect { service.call }.to raise_error(StandardError, "Failed to retrieve geolocation data: Invalid IP")
+        expect { service.call }.to raise_error(GeolocationService::ServiceError, "Unexpected error: Failed to retrieve geolocation data: Invalid IP")
       end
     end
   end

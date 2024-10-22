@@ -28,7 +28,7 @@ RSpec.describe InputExtractorService do
       let(:service) { InputExtractorService.new("invalid_url") }
 
       it "raises an error" do
-        expect { service.call }.to raise_error(StandardError, "Invalid IP or URL")
+        expect { service.call }.to raise_error(InputExtractorService::InvalidInputError, "Invalid IP or URL provided")
       end
     end
 
@@ -36,7 +36,7 @@ RSpec.describe InputExtractorService do
       let(:service) { InputExtractorService.new("999.999.999.999") }
 
       it "raises an error" do
-        expect { service.call }.to raise_error(StandardError, "Invalid IP or URL")
+        expect { service.call }.to raise_error(InputExtractorService::InvalidInputError, "Invalid IP or URL provided")
       end
     end
 
@@ -44,7 +44,7 @@ RSpec.describe InputExtractorService do
       let(:service) { InputExtractorService.new("") }
 
       it "raises an error" do
-        expect { service.call }.to raise_error(StandardError, "Invalid IP or URL")
+        expect { service.call }.to raise_error(InputExtractorService::InvalidInputError, "Invalid IP or URL provided")
       end
     end
 
@@ -52,7 +52,7 @@ RSpec.describe InputExtractorService do
       let(:service) { InputExtractorService.new("http://nonexistent.domain") }
 
       it "raises an error when trying to resolve IP" do
-        expect { service.call }.to raise_error(StandardError, "Invalid IP or URL")
+        expect { service.call }.to raise_error(InputExtractorService::InvalidInputError, "Invalid IP or URL provided")
       end
     end
   end
